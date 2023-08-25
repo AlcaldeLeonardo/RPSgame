@@ -28,7 +28,7 @@ export function game() {
     let roundResult;
     let round = 1;
 
-    while (round <= 5) {
+    while (scorePlayer < 3 && scoreComputer < 3) {
         alert(
             `Round - ${round}\n\n PLAYER ${scorePlayer} - ${scoreComputer} COMPUTER`
         );
