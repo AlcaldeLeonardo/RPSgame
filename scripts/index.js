@@ -11,7 +11,7 @@ function getRandomNumber() {
 function getComputerChoice() {
     let choice = getRandomNumber();
 
-    if (choice == 0) return `pock`;
+    if (choice == 0) return `rock`;
     else if (choice == 1) return `paper`;
     else return `scissors`;
 }
@@ -77,7 +77,7 @@ function game() {
 
     while (round <= 5) {
         alert(`Round - ${round}`)
-        let playerSelection = getPlayerChoice();
+        playerSelection = getPlayerChoice();
 
         console.log(round);
         roundResult = playRound(
@@ -90,6 +90,8 @@ function game() {
         console.log(scorePlayer, scoreComputer);
         round += 1;
     }
+    if(scorePlayer > scoreComputer) console.log(`YOU WIN!!!!!`)
+    else console.log(`SORRY, YOU LOSE`)
 }
 
 const $btnStart =  document.getElementById("startGame");
