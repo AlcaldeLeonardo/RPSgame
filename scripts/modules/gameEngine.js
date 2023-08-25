@@ -13,19 +13,19 @@ function playRound(playerSelection, computerSelection) {
         alert(`You Win!! ${playerSelection} beat ${computerSelection}`);
         return `win`;
     } else if (playerSelection == `rock` && computerSelection == `paper`) {
-        alert(`You Lose!! ${playerSelection} beat ${computerSelection}`);
+        alert(`You Lose!! ${computerSelection} beat ${playerSelection}`);
         return `lose`;
     } else if (playerSelection == `paper` && computerSelection == `rock`) {
         alert(`You Win!! ${playerSelection} beat ${computerSelection}`);
         return `win`;
     } else if (playerSelection == `paper` && computerSelection == `scissors`) {
-        alert(`You Lose!! ${playerSelection} beat ${computerSelection}`);
+        alert(`You Lose!! ${computerSelection} beat ${playerSelection}`);
         return `lose`;
     } else if (playerSelection == `scissors` && computerSelection == `paper`) {
         alert(`You Win!! ${playerSelection} beat ${computerSelection}`);
         return `win`;
     } else if (playerSelection == `scissors` && computerSelection == `rock`) {
-        alert(`You Lose!! ${playerSelection} beat ${computerSelection}`);
+        alert(`You Lose!! ${computerSelection} beat ${playerSelection}`);
         return `lose`;
     }
     //I am sure that there is a better way to do this logic but it is the one that occurred to me for now
