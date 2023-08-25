@@ -1,6 +1,4 @@
-function getRandomNumber() {
-    return Math.floor(Math.random() * 3);
-}
+const getRandomNumber = () => Math.floor(Math.random() * 3);
 
 export function getComputerChoice() {
     let choice = getRandomNumber();

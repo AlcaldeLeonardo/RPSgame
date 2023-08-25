@@ -1,10 +1,8 @@
-function validatePlayerChoice(playerSelection) {
-    return (
-        playerSelection != `rock` &&
-        playerSelection != `paper` &&
-        playerSelection != `scissors`
-    );
-}
+const validatePlayerChoice = playerSelection =>
+    playerSelection != `rock` &&
+    playerSelection != `paper` &&
+    playerSelection != `scissors`;
+
 export function getPlayerChoice() {
     let playerSelection = prompt(
         "Choose a valid option (rock, paper or scissors): "
