@@ -20,18 +20,16 @@ function playRound(playerSelection, computerSelection) {
 }
 
 export function game() {
-    let playerSelection;
     let scoreComputer = 0;
     let scorePlayer = 0;
     let roundResult;
     let round = 1;
 
     while (round <= 5) {
-        alert(`Round - ${round}\n\n PLAYER ${scorePlayer} - ${scoreComputer} COMPUTER`)
-        playerSelection = getPlayerChoice();
+        alert(`Round - ${round}\n\n PLAYER ${scorePlayer} - ${scoreComputer} COMPUTER`);
 
         roundResult = playRound(
-            playerSelection,
+            getPlayerChoice(),
             getComputerChoice()
         );
         if (roundResult == `win`) scorePlayer += 1;
