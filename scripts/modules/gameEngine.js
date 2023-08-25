@@ -2,39 +2,35 @@ import { getComputerChoice } from "./computerAccions.js";
 import { getPlayerChoice } from "./playerAccions.js";
 
 function playRound(playerSelection, computerSelection) {
-    console.log(playerSelection, computerSelection);
 
     while (playerSelection === computerSelection) {
-        alert("Hubo un empate, vuelve a elegir")
+        alert("There was a tie, choose again:")
         computerSelection = getComputerChoice();
-        console.log(`la computadora eligio: ${computerSelection}`);
-        playerSelection = getPlayerChoice();
+        playerSelection = getPlayerChoice();//getPlayerChoice() return a validate value
     }
 
     if (playerSelection == `rock` && computerSelection == `scissors`) {
-        console.log(`You Win!! ${playerSelection} beat ${computerSelection}`);
+        alert(`You Win!! ${playerSelection} beat ${computerSelection}`);
         return `win`;
     } else if (playerSelection == `rock` && computerSelection == `paper`) {
-        console.log(`You Lose!! ${playerSelection} beat ${computerSelection}`);
+        alert(`You Lose!! ${playerSelection} beat ${computerSelection}`);
         return `lose`;
     } else if (playerSelection == `paper` && computerSelection == `rock`) {
-        console.log(`You Win!! ${playerSelection} beat ${computerSelection}`);
+        alert(`You Win!! ${playerSelection} beat ${computerSelection}`);
         return `win`;
     } else if (playerSelection == `paper` && computerSelection == `scissors`) {
-        console.log(`You Lose!! ${playerSelection} beat ${computerSelection}`);
+        alert(`You Lose!! ${playerSelection} beat ${computerSelection}`);
         return `lose`;
     } else if (playerSelection == `scissors` && computerSelection == `paper`) {
-        console.log(`You Win!! ${playerSelection} beat ${computerSelection}`);
+        alert(`You Win!! ${playerSelection} beat ${computerSelection}`);
         return `win`;
     } else if (playerSelection == `scissors` && computerSelection == `rock`) {
-        console.log(`You Lose!! ${playerSelection} beat ${computerSelection}`);
+        alert(`You Lose!! ${playerSelection} beat ${computerSelection}`);
         return `lose`;
     }
+    //I am sure that there is a better way to do this logic but it is the one that occurred to me for now
 }
-//funcion que lanza el round
 
-
-//PROGRAMA PRINCIPAL
 export function game() {
     let playerSelection;
     let scoreComputer = 0;
@@ -43,10 +39,9 @@ export function game() {
     let round = 1;
 
     while (round <= 5) {
-        alert(`Round - ${round}`)
+        alert(`Round - ${round}\n\n PLAYER ${scorePlayer}- ${scoreComputer} COMPUTER`)
         playerSelection = getPlayerChoice();
 
-        console.log(round);
         roundResult = playRound(
             playerSelection,
             getComputerChoice()
@@ -54,9 +49,8 @@ export function game() {
         if (roundResult == `win`) scorePlayer += 1;
         else scoreComputer += 1;
 
-        console.log(scorePlayer, scoreComputer);
         round += 1;
     }
-    if(scorePlayer > scoreComputer) console.log(`YOU WIN!!!!!`)
-    else console.log(`SORRY, YOU LOSE`)
+    if(scorePlayer > scoreComputer) alert(`YOU WIN!!!!!`)
+    else alert(`SORRY, YOU LOSE`)
 }

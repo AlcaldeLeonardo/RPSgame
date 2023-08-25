@@ -6,12 +6,11 @@ function validatePlayerChoice(playerSelection) {
     );
 }
 export function getPlayerChoice() {
-    let playerSelection = prompt("elige opcion valida: ").toLocaleLowerCase();
-    while (validatePlayerChoice(playerSelection)) {
+    let playerSelection = prompt("Choose a valid option (rock, paper or scissors): ").toLocaleLowerCase();
+    while (validatePlayerChoice(playerSelection)) {//It is necessary to validate the player's choice before even continuing with the process
         playerSelection = prompt(
-            "Entrada no valida, elige entre rock, paper, scissors: "
+            "Invalid entry, choose again (rock, paper or scissors): "
         );
-        console.log(playerSelection);
     }
     return playerSelection;
 }

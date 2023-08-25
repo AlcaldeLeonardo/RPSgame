@@ -2,7 +2,6 @@ function getRandomNumber() {
     return Math.floor(Math.random() * 3);
 }
 
-//funcion que toma la desicion de la computadora
 export function getComputerChoice() {
     let choice = getRandomNumber();
 
@@ -10,3 +9,5 @@ export function getComputerChoice() {
     else if (choice == 1) return `paper`;
     else return `scissors`;
 }
+
+//getComputerChoice convert de getRandomNumber()'s return to a string
