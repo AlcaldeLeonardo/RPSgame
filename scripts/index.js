@@ -20,54 +20,58 @@ function getComputerChoice(){
 
 
     //funcion que lanza el round
-function playRound(playerSelection, computerSelection) {
-    console.log(playerSelection, computerSelection);
-
+    function playRound(playerSelection, computerSelection) {
+        console.log(playerSelection, computerSelection);
     
-    while(playerSelection === computerSelection){
-        computerSelection = getComputerChoice().toLocaleLowerCase();
-        console.log(`la computadora eligio: ${computerSelection}`)
-        playerSelection = prompt("Tied game, pick again").toLocaleLowerCase();
+        
+        while(playerSelection === computerSelection){
+            computerSelection = getComputerChoice().toLocaleLowerCase();
+            console.log(`la computadora eligio: ${computerSelection}`)
+            playerSelection = prompt("Tied game, pick again").toLocaleLowerCase();
+            while(validatePlayerChoice(playerSelection)){
+                playerSelection = prompt("elige opcion valida: ")
+                console.log(playerSelection);
+            }
+        }
+    
+        if (playerSelection == `rock` && computerSelection == `scissors`) {
+            console.log(`You Win!! ${playerSelection} beat ${computerSelection}`)
+            return `win`
+        } else if (playerSelection == `rock` && computerSelection == `paper`) {
+            console.log(`You Lose!! ${playerSelection} beat ${computerSelection}`)
+            return `lose`
+        } else if (playerSelection == `paper` && computerSelection == `rock`) {
+            console.log(`You Win!! ${playerSelection} beat ${computerSelection}`)
+            return `win`
+        } else if (playerSelection == `paper` && computerSelection == `scissors`) {
+            console.log(`You Lose!! ${playerSelection} beat ${computerSelection}`)
+            return `lose`
+        } else if (playerSelection == `scissors` && computerSelection == `paper`) {
+            console.log(`You Win!! ${playerSelection} beat ${computerSelection}`)
+            return `win`
+        } else if (playerSelection == `scissors` && computerSelection == `rock`) {
+            console.log(`You Lose!! ${playerSelection} beat ${computerSelection}`)
+            return `lose`
+        }
     }
-
-    if (playerSelection == `rock` && computerSelection == `scissors`) {
-        console.log(`You Win!! ${playerSelection} beat ${computerSelection}`)
-        return `win`
-    } else if (playerSelection == `rock` && computerSelection == `paper`) {
-        console.log(`You Lose!! ${playerSelection} beat ${computerSelection}`)
-        return `lose`
-    } else if (playerSelection == `paper` && computerSelection == `rock`) {
-        console.log(`You Win!! ${playerSelection} beat ${computerSelection}`)
-        return `win`
-    } else if (playerSelection == `paper` && computerSelection == `scissors`) {
-        console.log(`You Lose!! ${playerSelection} beat ${computerSelection}`)
-        return `lose`
-    } else if (playerSelection == `scissors` && computerSelection == `paper`) {
-        console.log(`You Win!! ${playerSelection} beat ${computerSelection}`)
-        return `win`
-    } else if (playerSelection == `scissors` && computerSelection == `rock`) {
-        console.log(`You Lose!! ${playerSelection} beat ${computerSelection}`)
-        return `lose`
+    
+    function validatePlayerChoice(playerSelection){
+        return (playerSelection != `rock` && playerSelection != `paper` && playerSelection != `scissors`);
     }
-}
-
-function validatePlayerChoice(playerSelection){
-    return (playerSelection != `rock` && playerSelection != `paper` && playerSelection != `scissors`);
-}
-
-
-
-
-//PROGRAMA PRINCIPAL
-function game(){
-
-}
-
-let playerSelection;
-
-do{
-    playerSelection = prompt("elige opcion valida: ")
-    console.log(playerSelection);
-}while(validatePlayerChoice(playerSelection));
-
-playRound(playerSelection,getComputerChoice().toLowerCase())
+    
+    
+    
+    
+    //PROGRAMA PRINCIPAL
+    function game(){
+    
+    }
+    
+    let playerSelection;
+    
+    do{
+        playerSelection = prompt("elige opcion valida: ")
+        console.log(playerSelection);
+    }while(validatePlayerChoice(playerSelection));
+    
+    playRound(playerSelection,getComputerChoice().toLowerCase())
