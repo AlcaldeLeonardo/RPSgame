@@ -9,22 +9,10 @@ function playRound(playerSelection, computerSelection) {
         playerSelection = getPlayerChoice();//getPlayerChoice() return a validate value
     }
 
-    if (playerSelection == `rock` && computerSelection == `scissors`) {
+    if (playerSelection == `rock` && computerSelection == `scissors` || playerSelection == `scissors` && computerSelection == `paper` || playerSelection == `paper` && computerSelection == `rock`) {
         alert(`You Win!! ${playerSelection} beat ${computerSelection}`);
         return `win`;
-    } else if (playerSelection == `rock` && computerSelection == `paper`) {
-        alert(`You Lose!! ${computerSelection} beat ${playerSelection}`);
-        return `lose`;
-    } else if (playerSelection == `paper` && computerSelection == `rock`) {
-        alert(`You Win!! ${playerSelection} beat ${computerSelection}`);
-        return `win`;
-    } else if (playerSelection == `paper` && computerSelection == `scissors`) {
-        alert(`You Lose!! ${computerSelection} beat ${playerSelection}`);
-        return `lose`;
-    } else if (playerSelection == `scissors` && computerSelection == `paper`) {
-        alert(`You Win!! ${playerSelection} beat ${computerSelection}`);
-        return `win`;
-    } else if (playerSelection == `scissors` && computerSelection == `rock`) {
+    } else {
         alert(`You Lose!! ${computerSelection} beat ${playerSelection}`);
         return `lose`;
     }
@@ -39,7 +27,7 @@ export function game() {
     let round = 1;
 
     while (round <= 5) {
-        alert(`Round - ${round}\n\n PLAYER ${scorePlayer}- ${scoreComputer} COMPUTER`)
+        alert(`Round - ${round}\n\n PLAYER ${scorePlayer} - ${scoreComputer} COMPUTER`)
         playerSelection = getPlayerChoice();
 
         roundResult = playRound(
@@ -51,6 +39,7 @@ export function game() {
 
         round += 1;
     }
+    alert(`PLAYER ${scorePlayer} - ${scoreComputer} COMPUTER`)
     if(scorePlayer > scoreComputer) alert(`YOU WIN!!!!!`)
     else alert(`SORRY, YOU LOSE`)
 }
