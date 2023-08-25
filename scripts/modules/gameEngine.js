@@ -2,14 +2,17 @@ import { getComputerChoice } from "./computerAccions.js";
 import { getPlayerChoice } from "./playerAccions.js";
 
 function playRound(playerSelection, computerSelection) {
-
     while (playerSelection === computerSelection) {
-        alert("There was a tie, choose again:")
+        alert("There was a tie, choose again:");
         computerSelection = getComputerChoice();
-        playerSelection = getPlayerChoice();//getPlayerChoice() return a validate value
+        playerSelection = getPlayerChoice(); //getPlayerChoice() return a validate value
     }
 
-    if (playerSelection == `rock` && computerSelection == `scissors` || playerSelection == `scissors` && computerSelection == `paper` || playerSelection == `paper` && computerSelection == `rock`) {
+    if (
+        (playerSelection == `rock` && computerSelection == `scissors`) ||
+        (playerSelection == `scissors` && computerSelection == `paper`) ||
+        (playerSelection == `paper` && computerSelection == `rock`)
+    ) {
         alert(`You Win!! ${playerSelection} beat ${computerSelection}`);
         return `win`;
     } else {
@@ -26,18 +29,17 @@ export function game() {
     let round = 1;
 
     while (round <= 5) {
-        alert(`Round - ${round}\n\n PLAYER ${scorePlayer} - ${scoreComputer} COMPUTER`);
-
-        roundResult = playRound(
-            getPlayerChoice(),
-            getComputerChoice()
+        alert(
+            `Round - ${round}\n\n PLAYER ${scorePlayer} - ${scoreComputer} COMPUTER`
         );
+
+        roundResult = playRound(getPlayerChoice(), getComputerChoice());
         if (roundResult == `win`) scorePlayer += 1;
         else scoreComputer += 1;
 
         round += 1;
     }
-    alert(`PLAYER ${scorePlayer} - ${scoreComputer} COMPUTER`)
-    if(scorePlayer > scoreComputer) alert(`YOU WIN!!!!!`)
-    else alert(`SORRY, YOU LOSE`)
+    alert(`PLAYER ${scorePlayer} - ${scoreComputer} COMPUTER`);
+    if (scorePlayer > scoreComputer) alert(`YOU WIN!!!!!`);
+    else alert(`SORRY, YOU LOSE`);
 }
