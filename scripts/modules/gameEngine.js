@@ -1,12 +1,25 @@
 import { getComputerChoice } from "./computerAccions.js";
 import { getPlayerChoice } from "./playerAccions.js";
 
-const btnRock = document.querySelector("#btnRock");
-const btnPaper = document.querySelector("#btnPaper");
-const btnScissors = document.querySelector("#btnScissors");
+const startMenu = document.querySelector("#startMenu");
+const gamingMenu = document.querySelector("#gamingMenu");
+const displayCom = document.querySelector("#scoreComputer")
+const displayPlayer = document.querySelector("#scorePlayer")
+const displayRound = document.querySelector("#roundCount")
+const resultScreen = document.querySelector("#resultScreen")
+const resultGame = document.querySelector("#result")
 
+let btnRock = document.querySelector("#btnRock");
+let btnPaper = document.querySelector("#btnPaper");
+let btnScissors = document.querySelector("#btnScissors");
 
-function SwitchMenu(oldMenu, newMenu) {
+function cleanEventListeners(element) {
+    const clonedElement = element.cloneNode(true);
+    element.replaceWith(clonedElement);
+    return clonedElement;
+}
+
+export function SwitchMenu(oldMenu, newMenu) {
     [oldMenu.className, newMenu.className] = [
         newMenu.className.replace(`visible`, `nonVisible`),
         oldMenu.className.replace(`nonVisible`, `visible`),
@@ -16,7 +29,7 @@ function SwitchMenu(oldMenu, newMenu) {
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         alert("There was a tie, choose again:");
-        return `tie`
+        return `tie`;
     }
 
     if (
@@ -39,38 +52,60 @@ export function game() {
     let roundResult;
     let round = 1;
 
-    console.log('round :>> ', round);
+    displayCom.textContent = 0;
+    displayPlayer.textContent = 0;
+    displayRound.textContent = 1;
+    console.log("round :>> ", round);
 
     function ScoreCount(result) {
-        
+
         if (result === `win`) {
             scorePlayer = scorePlayer + 1;
-            
-        }
-        else if (result === `lose`) scoreComputer = scoreComputer + 1;
-        
-        if (result !== `tie`) round += 1
-        
-        console.log('scorePlayer, scoreComputer :>> ', scorePlayer, scoreComputer);
-        console.log('round :>> ', round);
+        } else if (result === `lose`) scoreComputer = scoreComputer + 1;
+
+        if (result !== `tie`) round += 1;
+
+        displayCom.textContent = scoreComputer;
+        displayPlayer.textContent = scorePlayer;
+        displayRound.textContent = round;
+
+        console.log(
+            "scorePlayer, scoreComputer :>> ",
+            scorePlayer,
+            scoreComputer
+        );
+        console.log("round :>> ", round);
     }
 
-    const startMenu = document.querySelector("#startMenu");
-    const gamingMenu = document.querySelector("#gamingMenu");
+    function ShowResultScreen () {
+        if(round > 5) {
+            SwitchMenu(gamingMenu, resultScreen);
+            if(scoreComputer > scorePlayer) {
+                resultGame.textContent = "You Lose!"
+            }else resultGame.textContent = "You Win"
+        }
+    }
+
 
     SwitchMenu(startMenu, gamingMenu);
+    SwitchMenu(resultScreen, gamingMenu);
 
-    
-    btnRock.addEventListener(`click`, ()=> {
+    btnRock = cleanEventListeners(btnRock);
+    btnPaper = cleanEventListeners(btnPaper);
+    btnScissors = cleanEventListeners(btnScissors);
+
+    btnRock.addEventListener(`click`, () => {
         ScoreCount(playRound(`rock`, getComputerChoice()));
-    })
-    btnPaper.addEventListener(`click`, ()=> {
+        ShowResultScreen();
+    });
+    btnPaper.addEventListener(`click`, () => {
         ScoreCount(playRound(`paper`, getComputerChoice()));
-    })
-    btnScissors.addEventListener(`click`, ()=> {
+        ShowResultScreen();
+    });
+    btnScissors.addEventListener(`click`, () => {
         ScoreCount(playRound(`scissors`, getComputerChoice()));
-    })
-
+        ShowResultScreen();
+    });
 
     // while (scorePlayer < 3 && scoreComputer < 3) {
     //     alert(
