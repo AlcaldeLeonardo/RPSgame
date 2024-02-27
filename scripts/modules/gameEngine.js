@@ -1,6 +1,11 @@
 import { getComputerChoice } from "./computerAccions.js";
 import { getPlayerChoice } from "./playerAccions.js";
 
+const btnRock = document.querySelector("#btnRock");
+const btnPaper = document.querySelector("#btnPaper");
+const btnScissors = document.querySelector("#btnScissors");
+
+
 function SwitchMenu(oldMenu, newMenu) {
     [oldMenu.className, newMenu.className] = [
         newMenu.className.replace(`visible`, `nonVisible`),
@@ -9,10 +14,9 @@ function SwitchMenu(oldMenu, newMenu) {
 }
 
 function playRound(playerSelection, computerSelection) {
-    while (playerSelection === computerSelection) {
+    if (playerSelection === computerSelection) {
         alert("There was a tie, choose again:");
-        computerSelection = getComputerChoice();
-        playerSelection = getPlayerChoice(); //getPlayerChoice() return a validate value
+        return `tie`
     }
 
     if (
@@ -39,7 +43,18 @@ export function game() {
     const gamingMenu = document.querySelector("#gamingMenu");
 
     SwitchMenu(startMenu, gamingMenu);
-    
+
+
+    btnRock.addEventListener(`click`, ()=> {
+        playRound(`rock`, getComputerChoice())
+    })
+    btnPaper.addEventListener(`click`, ()=> {
+        playRound(`paper`, getComputerChoice())
+    })
+    btnScissors.addEventListener(`click`, ()=> {
+        playRound(`scissors`, getComputerChoice())
+    })
+
     // while (scorePlayer < 3 && scoreComputer < 3) {
     //     alert(
     //         `Round - ${round}\n\n PLAYER ${scorePlayer} - ${scoreComputer} COMPUTER`
