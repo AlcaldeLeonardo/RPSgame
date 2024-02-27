@@ -1,6 +1,13 @@
 import { getComputerChoice } from "./computerAccions.js";
 import { getPlayerChoice } from "./playerAccions.js";
 
+function SwitchMenu(oldMenu, newMenu) {
+    [oldMenu.className, newMenu.className] = [
+        newMenu.className.replace(`visible`, `nonVisible`),
+        oldMenu.className.replace(`nonVisible`, `visible`),
+    ];
+}
+
 function playRound(playerSelection, computerSelection) {
     while (playerSelection === computerSelection) {
         alert("There was a tie, choose again:");
@@ -28,18 +35,23 @@ export function game() {
     let roundResult;
     let round = 1;
 
-    while (scorePlayer < 3 && scoreComputer < 3) {
-        alert(
-            `Round - ${round}\n\n PLAYER ${scorePlayer} - ${scoreComputer} COMPUTER`
-        );
+    const startMenu = document.querySelector("#startMenu");
+    const gamingMenu = document.querySelector("#gamingMenu");
 
-        roundResult = playRound(getPlayerChoice(), getComputerChoice());
-        if (roundResult == `win`) scorePlayer += 1;
-        else scoreComputer += 1;
+    SwitchMenu(startMenu, gamingMenu);
+    
+    // while (scorePlayer < 3 && scoreComputer < 3) {
+    //     alert(
+    //         `Round - ${round}\n\n PLAYER ${scorePlayer} - ${scoreComputer} COMPUTER`
+    //     );
 
-        round += 1;
-    }
-    alert(`PLAYER ${scorePlayer} - ${scoreComputer} COMPUTER`);
-    if (scorePlayer > scoreComputer) alert(`YOU WIN!!!!!`);
-    else alert(`SORRY, YOU LOSE`);
+    //     roundResult = playRound(getPlayerChoice(), getComputerChoice());
+    //     if (roundResult == `win`) scorePlayer += 1;
+    //     else scoreComputer += 1;
+
+    //     round += 1;
+    // }
+    // alert(`PLAYER ${scorePlayer} - ${scoreComputer} COMPUTER`);
+    // if (scorePlayer > scoreComputer) alert(`YOU WIN!!!!!`);
+    // else alert(`SORRY, YOU LOSE`);
 }
