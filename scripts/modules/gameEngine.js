@@ -39,21 +39,38 @@ export function game() {
     let roundResult;
     let round = 1;
 
+    console.log('round :>> ', round);
+
+    function ScoreCount(result) {
+        
+        if (result === `win`) {
+            scorePlayer = scorePlayer + 1;
+            
+        }
+        else if (result === `lose`) scoreComputer = scoreComputer + 1;
+        
+        if (result !== `tie`) round += 1
+        
+        console.log('scorePlayer, scoreComputer :>> ', scorePlayer, scoreComputer);
+        console.log('round :>> ', round);
+    }
+
     const startMenu = document.querySelector("#startMenu");
     const gamingMenu = document.querySelector("#gamingMenu");
 
     SwitchMenu(startMenu, gamingMenu);
 
-
+    
     btnRock.addEventListener(`click`, ()=> {
-        playRound(`rock`, getComputerChoice())
+        ScoreCount(playRound(`rock`, getComputerChoice()));
     })
     btnPaper.addEventListener(`click`, ()=> {
-        playRound(`paper`, getComputerChoice())
+        ScoreCount(playRound(`paper`, getComputerChoice()));
     })
     btnScissors.addEventListener(`click`, ()=> {
-        playRound(`scissors`, getComputerChoice())
+        ScoreCount(playRound(`scissors`, getComputerChoice()));
     })
+
 
     // while (scorePlayer < 3 && scoreComputer < 3) {
     //     alert(
